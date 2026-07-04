@@ -1,0 +1,10 @@
+{
+  "name": "newSession",
+  "version": "1.0.0",
+  "description": "新建对话，生成上一个session标题",
+  "main": "index.js",
+  "dependencies": {
+    "wx-server-sdk": "~2.6.3",
+    "axios": "^1.6.0"
+  }
+}

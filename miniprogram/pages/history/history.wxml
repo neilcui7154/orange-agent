@@ -1,0 +1,77 @@
+<!--miniprogram/pages/history/history.wxml-->
+<view class="container">
+  <!-- 搜索栏 -->
+  <view class="search-bar">
+    <view class="search-input-wrap">
+      <text class="search-icon">🔍</text>
+      <input
+        class="search-input"
+        placeholder="搜索对话内容"
+        placeholder-class="search-placeholder"
+        value="{{keyword}}"
+        bindinput="onSearchInput"
+        bindconfirm="onSearch"
+        confirm-type="search"
+      />
+      <text class="search-clear" wx:if="{{keyword}}" bindtap="onClearKeyword">✕</text>
+    </view>
+  </view>
+
+  <!-- 对话列表 -->
+  <scroll-view
+    class="history-list"
+    scroll-y
+    enhanced="{{true}}"
+    show-scrollbar="{{false}}"
+  >
+    <view
+      class="swipe-item-wrap"
+      wx:for="{{sessions}}"
+      wx:key="sessionId"
+      data-index="{{index}}"
+      bindtouchstart="onTouchStart"
+      bindtouchmove="onTouchMove"
+      bindtouchend="onTouchEnd"
+    >
+      <!-- 右侧操作按钮（滑出后显示） -->
+      <view class="swipe-actions">
+        <view class="action-pin {{item.is_pinned ? 'action-pin-active' : ''}}" bindtap="onPin" data-index="{{index}}" data-sessionid="{{item.sessionId}}" data-pinned="{{item.is_pinned}}">
+          <text>{{item.is_pinned ? '取消置顶' : '置顶'}}</text>
+        </view>
+        <view class="action-delete" bindtap="onDeleteSession" data-index="{{index}}" data-sessionid="{{item.sessionId}}">
+          <text>删除</text>
+        </view>
+      </view>
+
+      <!-- 主体内容 -->
+      <view
+        class="history-item {{item.is_pinned ? 'history-item-pinned' : ''}}"
+        style="transform: translateX({{item.offsetX || 0}}px); transition: {{item.transitioning ? 'transform 0.3s' : 'none'}};"
+        catchtap="onTapSession"
+        data-sessionid="{{item.sessionId}}"
+        data-index="{{index}}"
+      >
+        <view class="history-content">
+          <view class="history-title-row">
+            <text class="pin-icon" wx:if="{{item.is_pinned}}">📌</text>
+            <text class="current-tag" wx:if="{{item.is_current}}">当前</text>
+            <text class="history-title">{{item.title}}</text>
+          </view>
+          <text class="history-date">{{item.date}}</text>
+        </view>
+        <text class="history-arrow">›</text>
+      </view>
+    </view>
+
+    <!-- 空状态 -->
+    <view class="empty" wx:if="{{sessions.length === 0 && !loading}}">
+      <text class="empty-icon">💬</text>
+      <text class="empty-text">{{keyword ? '未找到相关对话' : '暂无历史对话'}}</text>
+    </view>
+
+    <!-- 加载中 -->
+    <view class="loading" wx:if="{{loading}}">
+      <text class="loading-text">加载中...</text>
+    </view>
+  </scroll-view>
+</view>

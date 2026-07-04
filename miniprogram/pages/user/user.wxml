@@ -1,0 +1,81 @@
+<!--miniprogram/pages/user/user.wxml-->
+<view class="container">
+  <!-- 顶部用户信息卡片 -->
+  <view class="header">
+    <view class="avatar-wrap" bindtap="onChooseAvatar">
+      <image class="avatar" src="{{user.avatar_url || '/images/user.png'}}" mode="aspectFill"></image>
+      <view class="avatar-edit">
+        <text class="edit-icon">📷</text>
+      </view>
+    </view>
+    <view class="user-info">
+      <text class="name">{{user.name || '微信用户'}}</text>
+    <text class="phone">{{user.phone}}</text>
+    <text class="knowledge-date">知识库更新：2026-05-01</text>
+  </view>
+  </view>
+
+  <!-- 功能列表 -->
+  <view class="menu-section">
+    <view class="menu-item" bindtap="onFavorites">
+      <view class="menu-left">
+        <text class="menu-icon">⭐</text>
+        <text class="menu-text">我的收藏</text>
+      </view>
+      <text class="menu-arrow">›</text>
+    </view>
+
+    <view class="menu-item" bindtap="onClearChat">
+      <view class="menu-left">
+        <text class="menu-icon">🗑️</text>
+        <text class="menu-text">清除对话记录</text>
+      </view>
+      <text class="menu-arrow">›</text>
+    </view>
+
+
+    <view class="menu-item" bindtap="onFeedback">
+      <view class="menu-left">
+        <text class="menu-icon">💬</text>
+        <text class="menu-text">意见反馈</text>
+      </view>
+      <text class="menu-arrow">›</text>
+    </view>
+
+    <view class="menu-item" bindtap="onSettings">
+      <view class="menu-left">
+        <text class="menu-icon">⚙️</text>
+        <text class="menu-text">设置</text>
+      </view>
+      <text class="menu-arrow">›</text>
+    </view>
+  </view>
+
+  <!-- 使用统计 -->
+  <view class="stats-section">
+    <view class="stats-title">使用统计</view>
+    <view class="stats-grid">
+      <view class="stats-item">
+        <text class="stats-value">{{user.chat_count || 0}}</text>
+        <text class="stats-label">历史对话数</text>
+      </view>
+      <view class="stats-item">
+        <text class="stats-value">{{user.days || 0}}</text>
+        <text class="stats-label">使用天数</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 底部占位 -->
+  <view class="bottom-space"></view>
+
+  <!-- 退出登录按钮（固定在底部） -->
+  <view class="logout-section">
+    <button class="logout-btn" bindtap="onLogout">退出登录</button>
+  </view>
+
+  <!-- 版本信息 -->
+  <view class="footer">
+    <text class="version">版本 v1.0.0</text>
+  </view>
+</view>

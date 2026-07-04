@@ -1,0 +1,26 @@
+<!--miniprogram/pages/favorites/favorites.wxml-->
+<view class="container">
+  <!-- 收藏列表 -->
+  <scroll-view
+    class="favorites-list"
+    scroll-y
+    enhanced="{{true}}"
+    show-scrollbar="{{false}}"
+  >
+    <view class="fav-item" wx:for="{{favorites}}" wx:key="id">
+      <view class="fav-content">
+        <text class="fav-text">{{item.content}}</text>
+        <text class="fav-date">{{item.date}}</text>
+      </view>
+      <view class="fav-actions">
+        <text class="fav-btn" bindtap="onDelete" data-id="{{item.id}}">删除</text>
+      </view>
+    </view>
+
+    <!-- 空状态 -->
+    <view class="empty" wx:if="{{favorites.length === 0 && !loading}}">
+      <text class="empty-icon">⭐</text>
+      <text class="empty-text">暂无收藏</text>
+    </view>
+  </scroll-view>
+</view>

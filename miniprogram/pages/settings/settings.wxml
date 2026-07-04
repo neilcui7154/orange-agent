@@ -1,0 +1,47 @@
+<!--miniprogram/pages/settings/settings.wxml-->
+<view class="container">
+  <!-- 字体大小 -->
+  <view class="section">
+    <view class="section-title">字体大小</view>
+    <view class="font-size-list">
+      <view
+        class="font-size-item {{fontSize === item.value ? 'active' : ''}}"
+        wx:for="{{fontSizes}}"
+        wx:key="value"
+        bindtap="onFontSizeChange"
+        data-value="{{item.value}}"
+      >
+        <text class="font-size-label" style="font-size:{{item.size}}rpx;">A</text>
+        <text class="font-size-name">{{item.name}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 缓存管理 -->
+  <view class="section">
+    <view class="section-title">缓存管理</view>
+    <view class="cache-info">
+      <text class="cache-label">缓存大小</text>
+      <text class="cache-size">{{cacheSize}}</text>
+    </view>
+    <button class="clear-cache-btn" bindtap="onClearCache">清除缓存</button>
+  </view>
+
+  <!-- 关于 -->
+  <view class="section">
+    <view class="section-item" bindtap="onCheckUpdate">
+      <text class="section-text">检查更新</text>
+      <text class="section-arrow">›</text>
+    </view>
+
+    <view class="section-item" bindtap="onAbout">
+      <text class="section-text">关于我们</text>
+      <text class="section-arrow">›</text>
+    </view>
+  </view>
+
+  <!-- 版本信息 -->
+  <view class="footer">
+    <text class="version">版本 v1.0.0</text>
+  </view>
+</view>

@@ -1,0 +1,134 @@
+/* miniprogram/pages/settings/settings.wxss */
+
+page {
+  background: #f5f6fa;
+  min-height: 100vh;
+}
+
+.container {
+  padding: 24rpx;
+}
+
+/* ===== 区块 ===== */
+.section {
+  background: #fff;
+  border-radius: 20rpx;
+  padding: 32rpx;
+  margin-bottom: 24rpx;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.04);
+}
+
+.section-title {
+  font-size: 28rpx;
+  color: #999;
+  margin-bottom: 24rpx;
+  font-weight: 500;
+}
+
+.section-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 28rpx 0;
+  border-bottom: 1rpx solid #f5f5f5;
+}
+
+.section-item:last-child {
+  border-bottom: none;
+}
+
+.section-text {
+  font-size: 30rpx;
+  color: #333;
+}
+
+.section-arrow {
+  font-size: 36rpx;
+  color: #ccc;
+  font-weight: 300;
+}
+
+/* ===== 字体大小 ===== */
+.font-size-list {
+  display: flex;
+  gap: 16rpx;
+}
+
+.font-size-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8rpx;
+  padding: 20rpx 12rpx;
+  border-radius: 12rpx;
+  border: 2rpx solid #e8e8e8;
+  transition: all 0.2s;
+}
+
+.font-size-item.active {
+  border-color: #FF6B00;
+  background: #FFF5EE;
+}
+
+.font-size-label {
+  color: #333;
+}
+
+.font-size-item.active .font-size-label {
+  color: #FF6B00;
+}
+
+.font-size-name {
+  font-size: 22rpx;
+  color: #999;
+}
+
+.font-size-item.active .font-size-name {
+  color: #FF6B00;
+}
+
+/* ===== 缓存管理 ===== */
+.cache-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24rpx;
+}
+
+.cache-label {
+  font-size: 28rpx;
+  color: #666;
+}
+
+.cache-size {
+  font-size: 28rpx;
+  color: #333;
+  font-weight: 500;
+}
+
+.clear-cache-btn {
+  width: 100%;
+  height: 80rpx;
+  line-height: 80rpx;
+  background: #fff;
+  color: #FF3B30;
+  border: 2rpx solid #FF3B30;
+  border-radius: 16rpx;
+  font-size: 28rpx;
+}
+
+.clear-cache-btn:active {
+  background: #FFF5F5;
+}
+
+/* ===== 版本信息 ===== */
+.footer {
+  text-align: center;
+  padding: 40rpx 0;
+}
+
+.version {
+  font-size: 24rpx;
+  color: #c0c0c0;
+}

@@ -1,0 +1,83 @@
+/* miniprogram/pages/favorites/favorites.wxss */
+
+page {
+  background: #f5f6fa;
+  min-height: 100vh;
+}
+
+.container {
+  padding: 16rpx 24rpx;
+}
+
+/* ===== 收藏列表 ===== */
+.favorites-list {
+  height: 100vh;
+}
+
+.fav-item {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 28rpx;
+  margin-bottom: 16rpx;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.04);
+}
+
+.fav-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12rpx;
+  margin-right: 16rpx;
+}
+
+.fav-text {
+  font-size: 28rpx;
+  color: #333;
+  line-height: 1.6;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+.fav-date {
+  font-size: 24rpx;
+  color: #999;
+}
+
+.fav-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12rpx;
+}
+
+.fav-btn {
+  font-size: 24rpx;
+  color: #FF3B30;
+  padding: 8rpx 16rpx;
+  border: 1rpx solid #FF3B30;
+  border-radius: 8rpx;
+}
+
+/* ===== 空状态 ===== */
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 120rpx 0;
+  gap: 24rpx;
+}
+
+.empty-icon {
+  font-size: 80rpx;
+}
+
+.empty-text {
+  font-size: 28rpx;
+  color: #999;
+}

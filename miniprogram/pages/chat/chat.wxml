@@ -1,0 +1,104 @@
+<!--miniprogram/pages/chat/chat.wxml-->
+<view class="container">
+  <!-- 顶部新建对话按钮 -->
+  <view class="top-bar">
+    <view class="new-session-btn" bindtap="onNewSession">+ 新建对话</view>
+  </view>
+
+  <!-- 查看历史提示 -->
+  <view class="history-tip" wx:if="{{isViewingHistory}}">
+    <text class="history-tip-text">📖 正在查看历史对话</text>
+    <text class="history-tip-back" bindtap="onBackToLatest">返回当前对话 ›</text>
+  </view>
+
+  <!-- 消息列表 -->
+  <scroll-view
+    class="message-list"
+    scroll-y
+    scroll-into-view="{{scrollToView}}"
+    scroll-with-animation
+    enhanced="{{true}}"
+    show-scrollbar="{{false}}"
+    bounces="{{true}}"
+    throttle="{{false}}"
+  >
+    <view class="message-item" wx:for="{{messages}}" wx:key="id" id="msg-{{item.id}}">
+      <!-- 用户消息 -->
+      <view class="message-row user-row" wx:if="{{item.role === 'user'}}">
+        <view class="msg-bubble user-bubble">
+          <text class="msg-text" user-select="{{true}}">{{item.content}}</text>
+        </view>
+        <image class="avatar" src="/images/user.png" mode="aspectFill"></image>
+      </view>
+
+      <!-- AI 消息 -->
+      <view class="message-row ai-row" wx:else>
+        <image class="avatar" src="/images/logo.png" mode="aspectFill"></image>
+        <view class="msg-bubble ai-bubble">
+          <rich-text class="msg-rich" nodes="{{item.html || item.content}}" wx:if="{{item.html}}"></rich-text>
+          <text class="msg-text typing-text" wx:else user-select="{{true}}">{{item.content}}</text>
+          <view class="cursor" wx:if="{{item.typing}}">|</view>
+          <!-- 选项按钮 -->
+          <view class="options-wrap" wx:if="{{item.options && item.options.length}}">
+            <view
+              class="option-btn"
+              wx:for="{{item.options}}"
+              wx:key="index"
+              wx:for-item="opt"
+              bindtap="onOptionTap"
+              data-text="{{opt}}"
+              data-msgid="{{item.id}}"
+            >{{opt}}</view>
+          </view>
+          <!-- 操作按钮 -->
+          <view class="msg-actions">
+            <text class="action-btn" bindtap="onFavorite" data-id="{{item.id}}">⭐ 收藏</text>
+            <text class="action-btn" bindtap="onShare" data-id="{{item.id}}">📤 分享</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 加载中提示 -->
+    <view class="loading-wrap" wx:if="{{isLoading}}">
+      <view class="loading-dot"></view>
+      <view class="loading-dot"></view>
+      <view class="loading-dot"></view>
+      <text class="loading-text">AI 思考中</text>
+    </view>
+
+    <!-- 底部占位 -->
+    <view style="height:20rpx;"></view>
+  </scroll-view>
+
+  <!-- 水印 -->
+  <view class="watermark">仅供内部学习使用</view>
+
+  <!-- 对话过长提示 -->
+  <view class="long-tip" wx:if="{{showLongTip}}">
+    <text class="long-tip-text">💡 对话较长，建议新建对话以获得更好的回答效果</text>
+    <text class="long-tip-close" bindtap="onCloseLongTip">✕</text>
+  </view>
+
+  <!-- 输入框 -->
+  <view class="input-bar">
+    <view class="input-wrap">
+      <textarea
+        class="input"
+        placeholder="{{isViewingHistory ? '查看历史模式，请返回当前对话后发言' : '输入您的问题...'}}"
+        placeholder-class="input-placeholder"
+        value="{{inputText}}"
+        bindinput="onInput"
+        maxlength="500"
+        auto-height
+        disabled="{{isLoading || isViewingHistory}}"
+        confirm-type="send"
+        bindconfirm="onSend"
+      ></textarea>
+    </view>
+    <view
+      class="send-btn {{!inputText || isLoading || isViewingHistory ? 'send-btn-disabled' : ''}}"
+      bindtap="onSend"
+    >发送</view>
+  </view>
+</view>

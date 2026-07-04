@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "openapi": []
+  },
+  "envVariables": {},
+  "timeout": 10,
+  "runtime": "Nodejs16.13",
+  "memorySize": 256,
+  "installDependency": true,
+  "handler": "index.main",
+  "egressNetwork": "direct"
+}

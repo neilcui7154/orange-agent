@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "openapi": []
+  },
+  "envVariables": {},
+  "timeout": 30,
+  "runtime": "Nodejs16.13",
+  "memorySize": 256,
+  "installDependency": true,
+  "handler": "verify.js.main"
+}
