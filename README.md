@@ -42,4 +42,4 @@ This is a personal project built by the author during off-hours. It is not an of
 
 ## Author
 
-Hankai Cui — Insurance Frontline Manager × AI Builder.
+Neil Cui — Insurance Frontline Manager × AI Builder.
